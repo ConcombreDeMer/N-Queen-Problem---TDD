@@ -37,6 +37,12 @@ class TestNQueens(unittest.TestCase):
     def test_solution_count(self):
         solution_5 = solve_n_queens(5)
         self.assertGreater(len(solution_5), 0)  
+
+    def test_solution_count_large(self):
+        solution_6 = solve_n_queens(6)
+        solution_7 = solve_n_queens(7)
+        self.assertGreater(len(solution_6), 0)
+        self.assertGreater(len(solution_7), 0)
         
 if __name__ == '__main__':
     unittest.main()
