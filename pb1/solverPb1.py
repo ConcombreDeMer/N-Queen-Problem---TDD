@@ -3,39 +3,11 @@ def solve_n_queens(n):
     Résout le problème des N reines pour une taille donnée de tableau n x n.
     Retourne toutes les solutions possibles sous forme de tableaux d'échiquiers.
     """
-    if n == 2 or n == 3:
+    if n < 4:
         return []
     
-    if n == 4:
-        # Solutions spécifiques pour n=4
-        return [
-            [
-                ['Q', '.', '.', '.'],
-                ['.', '.', 'Q', '.'],
-                ['.', '.', '.', 'Q'],
-                ['.', 'Q', '.', '.']
-            ],
-            [
-                ['.', 'Q', '.', '.'],
-                ['Q', '.', '.', '.'],
-                ['.', '.', 'Q', '.'],
-                ['.', '.', '.', 'Q']
-            ]
-        ]
-    
-    if n == 6:
-        solutions = backtrack([], n)
-        boards = []
-        expected_first = [0, 4, 1, 3, 2, 0]
-        for sol in solutions:
-            board = display_board(sol)
-            if sol == expected_first:
-                boards.insert(0, board)
-            else:
-                boards.append(board)
-        return boards
-    
     solutions = backtrack([], n)
+    solutions.sort()
     return [display_board(solution) for solution in solutions]
 
 def backtrack(board, n):
@@ -46,8 +18,9 @@ def backtrack(board, n):
         return [board[:]]
     
     solutions = []
+    row = len(board)
     for col in range(n):
-        if is_safe(board, len(board), col):
+        if is_safe(board, row, col):
             board.append(col)
             solutions += backtrack(board, n)
             board.pop()
@@ -71,4 +44,3 @@ def display_board(solution):
     for row, col in enumerate(solution):
         board[row][col] = 'Q'
     return board
-

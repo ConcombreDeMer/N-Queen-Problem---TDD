@@ -14,22 +14,29 @@ class TestNQueens(unittest.TestCase):
         """
         Teste les cas où il y a plusieurs solutions (n=4).
         """
-        expected = [
-            [
-                ['Q', '.', '.', '.'],
-                ['.', '.', 'Q', '.'],
-                ['.', '.', '.', 'Q'],
-                ['.', 'Q', '.', '.']
-            ],
-            [
-                ['.', 'Q', '.', '.'],
-                ['Q', '.', '.', '.'],
-                ['.', '.', 'Q', '.'],
-                ['.', '.', '.', 'Q']
-            ]
-        ]
         result = solve_n_queens(4)
-        self.assertEqual(result, expected)
+
+        self.assertEqual(len(result), 2)
+        
+
+        for solution in result:
+            self.assertEqual(len(solution), 4)
+            self.assertTrue(all(len(row) == 4 for row in solution))
+            
+            self.assertTrue(all(row.count('Q') == 1 for row in solution))
+            
+            columns = [[row[i] for row in solution] for i in range(4)]
+            self.assertTrue(all(col.count('Q') == 1 for col in columns))
+
+            queens_pos = []
+            for i in range(4):
+                for j in range(4):
+                    if solution[i][j] == 'Q':
+                        queens_pos.append((i, j))
+            
+            for i, (r1, c1) in enumerate(queens_pos):
+                for r2, c2 in queens_pos[i+1:]:
+                    self.assertFalse(abs(r1 - r2) == abs(c1 - c2))
     
     def test_solution_count(self):
         """
