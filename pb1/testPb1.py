@@ -33,6 +33,10 @@ class TestNQueens(unittest.TestCase):
             ['.', 'Q', '.', '.']
         ]
         self.assertEqual(display_board(solution), expected)
+
+    def test_solution_count(self):
+        solution_5 = solve_n_queens(5)
+        self.assertGreater(len(solution_5), 0)  
         
 if __name__ == '__main__':
     unittest.main()
