@@ -18,7 +18,7 @@ def backtrack(board, n):
     for col in range(n):
         if is_safe(board, len(board), col):
             board.append(col)
-            solutions.extend(backtrack(board, n))
+            solutions += backtrack(board, n)
             board.pop()
     return solutions
 
