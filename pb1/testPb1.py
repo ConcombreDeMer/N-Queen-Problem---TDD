@@ -6,12 +6,20 @@ class TestNQueens(unittest.TestCase):
         self.assertEqual(solve_n_queens(2), [])
         self.assertEqual(solve_n_queens(3), [])
     
-    def test_one_solution(self):
+    def test_multiple_solutions(self):
         expected = [
-            ['Q', '.', '.', '.'],
-            ['.', '.', 'Q', '.'],
-            ['.', '.', '.', 'Q'],
-            ['.', 'Q', '.', '.']
+            [
+                ['Q', '.', '.', '.'],
+                ['.', '.', 'Q', '.'],
+                ['.', '.', '.', 'Q'],
+                ['.', 'Q', '.', '.']
+            ],
+            [
+                ['.', 'Q', '.', '.'],
+                ['Q', '.', '.', '.'],
+                ['.', '.', 'Q', '.'],
+                ['.', '.', '.', 'Q']
+            ]
         ]
         result = solve_n_queens(4)
         self.assertEqual(result, expected)

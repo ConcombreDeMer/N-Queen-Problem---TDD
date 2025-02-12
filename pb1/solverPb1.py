@@ -9,9 +9,7 @@ def solve_n_queens(n):
             ['.', 'Q', '.', '.']
         ]
     solutions = backtrack([], n)
-    if not solutions:
-        return []
-    return display_board(solutions[0])
+    return [display_board(solution) for solution in solutions]
 
 def backtrack(board, n):
     if len(board) == n:
