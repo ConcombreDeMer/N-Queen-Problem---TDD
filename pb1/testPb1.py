@@ -8,6 +8,16 @@ class TestNQueens(unittest.TestCase):
     
     def test_one_solution(self):
         self.assertEqual(solve_n_queens(4), [[0, 2, 3, 1]])
+
+    def test_display_board(self):
+        solution = [0, 2, 3, 1]
+        expected = [
+            ['Q', '.', '.', '.'],
+            ['.', '.', 'Q', '.'],
+            ['.', '.', '.', 'Q'],
+            ['.', 'Q', '.', '.']
+        ]
+        self.assertEqual(display_board(solution), expected)
         
 if __name__ == '__main__':
     unittest.main()
