@@ -12,6 +12,9 @@ def test_validate_positions():
 def test_is_valid_pair_basic():
     from solver import is_valid_pair
     assert is_valid_pair((0, 0), (1, 1)) == True, "Les reines doivent s'attaquer (diagonale)"
+    assert is_valid_pair((0, 0), (0, 1)) == True, "Les reines doivent s'attaquer (ligne)"
+    assert is_valid_pair((0, 0), (1, 0)) == True, "Les reines doivent s'attaquer (colonne)"
+    assert is_valid_pair((0, 0), (1, 2)) == False, "Les reines ne doivent pas s'attaquer"
 
 
 
